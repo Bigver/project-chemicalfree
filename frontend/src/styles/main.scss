@@ -1,0 +1,26 @@
+@use './homepage.scss';
+@use './login.scss';
+@use './register.scss';
+@use './slidebar.scss';
+@use './welcome.scss';
+@use './navbar.scss';
+@use './content/content1.scss';
+@use './content/content2.scss';
+@use './content/content3.scss';
+@use './content/content4.scss';
+@use './content/content5.scss';
+@use './content/content6.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+// styles.scss
+body {
+    font-family: "Chakra Petch", serif;
+    margin: 0;
+    padding: 0;
+    background-color: #09393b;
+}
+  
+
+.link{
+    text-decoration: none;
+}

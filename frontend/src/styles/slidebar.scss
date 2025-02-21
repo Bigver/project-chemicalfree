@@ -1,0 +1,46 @@
+.slide-bar {
+    background-color: #e9efee;
+    width: 38%;
+    min-height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    .logo{
+        display: grid;
+        justify-content: center;
+    }
+    .text {
+        display: grid;
+        gap: 1rem;
+        .text-1 {
+            background-color: #09393b;
+            padding: 18px;
+            max-width: 350px;
+            width: 100%;
+            margin: auto;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            transition: 1s;
+            scale: 0.95;
+            &:hover {
+                scale: 1;
+            }
+            h1 {
+                font-size: 1rem;
+                display: flex;
+                gap: 1rem;
+                font-weight: normal;
+                color: white;
+            }
+        }
+        .text-2 {
+            max-width: 85%;
+            margin: auto;
+            p {
+                font-weight: normal;
+            }
+        }
+    }
+}
