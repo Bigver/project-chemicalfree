@@ -5,19 +5,35 @@ import { FaBook, FaAddressBook, FaRegLightbulb } from "react-icons/fa";
 import { MdMenuBook } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoMdMenu } from "react-icons/io";
+import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CiLogout } from "react-icons/ci";
 
 const Slidebar = () => {
   const [show, setShow] = useState(false);
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login"); // กลับไปหน้า login หลัง logout
+  };
   return (
     <div>
       <div className="nav-ham">
-        <a onClick={()=>setShow(!show)}>
+        <a onClick={() => setShow(!show)}>
           <IoMdMenu size={30} />
         </a>
       </div>
       <div className={show ? "slide-bar-show" : `slide-bar`}>
+        <button onClick={handleLogout} className="logout-button">
+          <CiLogout size={25} /> <span>Logout</span>
+        </button>
         <div className="logo">
-          <img src={logo} alt="" />
+          <Link to={"/welcome"} className="link">
+            <img src={logo} alt="" />
+          </Link>
         </div>
         <div className="text">
           <Link to={"/page1"} className="link">

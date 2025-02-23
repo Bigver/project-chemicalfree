@@ -5,6 +5,7 @@ import { requestMethod } from "../../requestMethod";
 import { toast } from "react-toastify";
 import AdminLayout from "./AdminLayout";
 import Modal from "react-modal";
+import { Link } from "react-router-dom";
 
 const UserPage = () => {
   const [users, setUsers] = useState([]);
@@ -36,9 +37,9 @@ const UserPage = () => {
       try {
         await axios.delete(`${requestMethod}/users/${id}`);
         setUsers(users.filter((user) => user.id !== id));
-        toast.success("delete user success")
+        toast.success("delete user success");
       } catch (error) {
-        toast.error("fail delete user")
+        toast.error("fail delete user");
       }
     }
   };
@@ -90,13 +91,27 @@ const UserPage = () => {
                     >
                       👁️ ดูข้อมูล
                     </button>
+
                     <button
                       className="delete-btn"
-                      style={{marginLeft : '1rem'}}
+                      style={{ marginLeft: "1rem" }}
                       onClick={() => handleDelete(user.id)}
                     >
                       🗑️ ลบ
                     </button>
+                    <Link to={`/admin/personal/edit/${user.id}`}>
+                      <button
+                        className="view-btn"
+                        style={{
+                          marginLeft: "1rem",
+                          backgroundColor: "yellow",
+                          color: "black",
+                        }}
+                        onClick={() => fetchPersonalInfo(user.personal)}
+                      >
+                        แก้ไขข้อมูล
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               ))
@@ -174,7 +189,9 @@ const UserPage = () => {
         ) : (
           <p>ไม่มีข้อมูลส่วนตัว</p>
         )}
-        <button onClick={() => setModalIsOpen(false)} className="close-button">ปิด</button>
+        <button onClick={() => setModalIsOpen(false)} className="close-button">
+          ปิด
+        </button>
       </Modal>
     </AdminLayout>
   );

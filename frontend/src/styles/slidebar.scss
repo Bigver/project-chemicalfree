@@ -6,6 +6,26 @@
     justify-content: center;
     align-items: center;
     position: fixed;
+    .logout-button {
+        padding: 10px 15px;
+        background-color: #ff4646;
+        color: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        font-size: 0.8rem;
+        &:hover {
+            background-color: #cc0000;
+        }
+    }
     .logo {
         display: grid;
         justify-content: center;
@@ -71,6 +91,27 @@
 
 
 .slide-bar-show {
+    .logout-button {
+        padding: 5px 10px;
+        background-color: #151111;
+        color: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        font-size: 16px;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        left: 0;
+        z-index: 3;
+        font-size: 0.8rem;
+        &:hover {
+            background-color: #cc0000;
+        }
+    }
     background-color: #e9efee;
     width: 70%;
     min-height: 100vh;
@@ -111,9 +152,11 @@
         .text-2 {
             max-width: 85%;
             margin: auto;
+            padding-top: 20px;
             p {
                 font-size: 1.4vh;
                 font-weight: normal;
+                display: none;
             }
         }
     }

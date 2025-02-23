@@ -19,6 +19,7 @@ import PrivateAdminRoute from "./components/PrivateAdminRoute"; // import compon
 import UserPage from "./pages/admin/UserPage";
 import SurveyPage from "./pages/admin/SurveyPage";
 import ErrorPage from "./pages/ErrorPage";
+import EditPersonal from "./pages/admin/EditPersonal";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
 
           <Route path="/admin/user" element={<PrivateAdminRoute requiredRole="admin"><UserPage /></PrivateAdminRoute>} />
           <Route path="/admin/survey" element={<PrivateAdminRoute requiredRole="admin"><SurveyPage /></PrivateAdminRoute>} />
+          <Route path="/admin/personal/edit/:id" element={<PrivateAdminRoute requiredRole="admin"><EditPersonal /></PrivateAdminRoute>} />
 
         </Routes>
       </Router>
