@@ -1,19 +1,30 @@
-import { useState } from "react";
+import { useState, useContext , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import AuthContext from "../context/AuthContext.jsx";
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { login , token } = useContext(AuthContext);
 
-  const handleLogin = (e) => {
+  useEffect(()=>{
+    if(token)
+      navigate('/welcome')
+  },[])
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Logging in with:", email, password);
-    // สามารถเพิ่ม API call หรือ logic อื่น ๆ ที่นี่
-    navigate("/welcome"); // ตัวอย่างการเปลี่ยนหน้า
+    const success = await login(email, password);
+    if (success) {
+      toast.success("Login success")
+      navigate("/welcome");
+    } else {
+      toast.error("Login failed!")
+    }
   };
-
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleLogin}>

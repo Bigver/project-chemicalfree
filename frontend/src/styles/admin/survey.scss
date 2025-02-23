@@ -1,0 +1,47 @@
+.survey-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: left;
+  
+    .survey-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  
+    .survey-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 1rem;
+  
+      th, td {
+        padding: 10px;
+      }
+
+      td{
+        text-align: center;
+      }
+
+      th {
+        background-color: #f0f0f0;
+        text-align: center;
+      }
+  
+      .behavior-header {
+        width: 60%;
+      }
+  
+      .level-header {
+        width: 40%;
+        text-align: center;
+      }
+  
+      input[type="radio"] {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+  

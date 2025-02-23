@@ -1,0 +1,15 @@
+.layout {
+  display: flex;
+  background-color: rgb(243, 243, 243);
+  min-height: 100vh;
+  .content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+  }
+
+  .sidebar.closed + .content {
+    margin-left: 60px;
+  }
+}

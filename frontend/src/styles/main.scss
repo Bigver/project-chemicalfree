@@ -10,6 +10,10 @@
 @use './content/content4.scss';
 @use './content/content5.scss';
 @use './content/content6.scss';
+@use './admin/survey.scss';
+@use './admin/user.scss';
+@use './admin/slidebar-admin.scss';
+@use './admin/layout.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 // styles.scss
@@ -17,7 +21,7 @@ body {
     font-family: "Chakra Petch", serif;
     margin: 0;
     padding: 0;
-    background-color: #09393b;
+    background-color: #ffffff;
 }
   
 

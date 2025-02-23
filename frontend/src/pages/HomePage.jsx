@@ -1,6 +1,16 @@
 import React from "react";
 import logo from '../assets/logo.png'
+import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
+
 const HomePage = () => {
+  const navigate = useNavigate();
+  const { token } = useContext(AuthContext);
+  useEffect(() => {
+    if (token) navigate("/welcome");
+  }, []);
+  
   return (
     <div className="home-container">
       <div className="container">

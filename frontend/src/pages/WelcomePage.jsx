@@ -19,7 +19,7 @@ const WelcomePage = () => {
       </div>
       <div className="content2">
         <div className="text">
-          <Link to={"/page1"}>
+          <Link to={"/page1"} className="link">
             <div className="text-1">
               <h1>
                 <FaBook color="white" size={30} /> ข้อมูลทั่วไปของโครงงาน
@@ -27,7 +27,7 @@ const WelcomePage = () => {
               <GoChevronRight color="white" size={30} />
             </div>
           </Link>
-          <Link to={"/page2"}>
+          <Link to={"/page2"} className="link">
             <div className="text-1">
               <h1>
                 <FaAddressBook color="white" size={30} />
@@ -36,7 +36,7 @@ const WelcomePage = () => {
               <GoChevronRight color="white" size={30} />
             </div>
           </Link>
-          <Link to={"/page3"}>
+          <Link to={"/page3"} className="link">
             <div className="text-1">
               <h1>
                 <MdMenuBook color="white" size={30} /> แบบทดสอบก่อนการอบรม
@@ -44,7 +44,7 @@ const WelcomePage = () => {
               <GoChevronRight color="white" size={30} />
             </div>
           </Link>
-          <Link to={"/page4"}>
+          <Link to={"/page4"} className="link">
             <div className="text-1">
               <h1>
                 <FaRegLightbulb color="white" size={30} /> ความรู้
@@ -52,7 +52,7 @@ const WelcomePage = () => {
               <GoChevronRight color="white" size={30} />
             </div>
           </Link>
-          <Link to={"/page5"}>
+          <Link to={"/page5"} className="link">
             <div className="text-1">
               <h1>
                 <MdMenuBook color="white" size={30} /> แบบทดสอบหลังการอบรม
@@ -60,7 +60,7 @@ const WelcomePage = () => {
               <GoChevronRight color="white" size={30} />
             </div>
           </Link>
-          <Link to={"/page6"}>
+          <Link to={"/page6"} className="link">
             <div className="text-1">
               <h1>
                 <MdMenuBook color="white" size={30} /> แบบบันทึกพฤติกรรม
