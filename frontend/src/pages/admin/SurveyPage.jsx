@@ -66,6 +66,12 @@ const SurveyPage = () => {
     });
   };
 
+  const handlePageChange = (newPage) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setPage(newPage);
+    }
+  };
+
   return (
     <AdminLayout>
       <div className="user-table">
