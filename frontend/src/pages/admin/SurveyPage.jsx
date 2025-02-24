@@ -119,7 +119,7 @@ const SurveyPage = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4">ไม่พบข้อมูล</td>
+                <td colSpan="4">กำลังโหลดข้อมูลกรุณารอสักครู่</td>
               </tr>
             )}
           </tbody>
