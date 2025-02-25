@@ -6,22 +6,27 @@ import AuthContext from "../../context/AuthContext"; // Context ที่เก�
 import { useContext } from "react";
 import axios from "axios";
 import { requestMethod } from "../../requestMethod";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import FormTest from "../../components/FormTest";
+import jwt_decode from "jwt-decode"; // ใช้ named import
+import FormPostTest from "../../components/FormPostTest";
 
 const Page2 = () => {
   const { register, handleSubmit, reset } = useForm();
-  const { user } = useContext(AuthContext); // ดึง token จาก context
-  const [data , setData] = useState([])
+  const [data, setData] = useState([]);
+  const token = localStorage.getItem("token"); // ดึง token จาก localStorage
+  const decodedUser = jwt_decode(token); // ถอดรหัส token
+
   useEffect(() => {
     const fecthPersonal = async () => {
       try {
         const response = await axios.get(
-          `${requestMethod}/users/${user.userId}`
+          `${requestMethod}/users/${decodedUser.userId}`
         );
-        setData(response.data.personal)
+        setData(response.data.personal);
         reset(response.data.personal);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
     fecthPersonal();
@@ -29,10 +34,13 @@ const Page2 = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.put(`${requestMethod}/users/${user.userId}/personal`, data);
-      toast.success("บันทึกข้อมูลสำเร็จ")
+      await axios.put(
+        `${requestMethod}/users/${decodedUser.userId}/personal`,
+        data
+      );
+      toast.success("บันทึกข้อมูลสำเร็จ");
     } catch (error) {
-      toast.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล")
+      toast.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล");
     }
   };
   return (
@@ -45,9 +53,15 @@ const Page2 = () => {
             <h2>ข้อมูลส่วนตัว</h2>
             <div>
               <label>ชื่อ</label>
-              <input type="text" {...register("firstName", { required: true })} />
+              <input
+                type="text"
+                {...register("firstName", { required: true })}
+              />
               <label>นามสกุล</label>
-              <input type="text" {...register("lastName", { required: true })} />
+              <input
+                type="text"
+                {...register("lastName", { required: true })}
+              />
             </div>
 
             <label>อายุ:</label>
@@ -77,7 +91,10 @@ const Page2 = () => {
             />
 
             <label>ปัจจุบันเพาะปลูกอะไรเป็นหลัก:</label>
-            <input type="text" {...register("currentCrops", { required: true })} />
+            <input
+              type="text"
+              {...register("currentCrops", { required: true })}
+            />
 
             <label>ผลเลือดก่อนเข้าร่วมโครงการ:</label>
             <input type="text" {...register("bloodTestResults")} />
@@ -96,6 +113,12 @@ const Page2 = () => {
             <button type="submit">บันทึกข้อมูล</button>
           </form>
         </div>
+      </div>
+      <div className="content2">
+        <FormTest preTest={data.preTest} />
+      </div>
+      <div className="content2">
+        <FormPostTest preTest={data.postTest} />
       </div>
     </div>
   );

@@ -80,7 +80,15 @@
                   }
                 }
               }
-              
+              .select-ctn{
+                display: grid;
+                margin-bottom: 60px;
+                margin-left: 5%;
+                .select{
+                  display: flex;
+                  margin-top: 3%;
+                }
+              }
         }
        
     }

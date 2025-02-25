@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -29,12 +28,12 @@ const RegisterPage = () => {
       return;
     }
 
-    const success = await register(username, email, password);
+    const success = await register(username , password);
     if (success) {
       toast.success("Register success");
       navigate("/login");
     } else {
-      toast.error("เกิดข้อผิดพลาดกรุณาเปลี่ยน username หรือ email");
+      toast.error("เกิดข้อผิดพลาดกรุณาลองใหม่ หรือ เปลี่ยน username");
     }
   };
 
@@ -49,16 +48,6 @@ const RegisterPage = () => {
             placeholder="ชื่อผู้ใช้งาน"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div className="input-group">
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="กรอกอีเมล"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -78,7 +67,7 @@ const RegisterPage = () => {
           )}
         </div>
         <div className="input-group">
-          <label>Password</label>
+          <label>confirmPassword</label>
           <input
             type="password"
             placeholder="ยืนยันรหัสผ่าน"

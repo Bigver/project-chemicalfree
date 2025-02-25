@@ -52,3 +52,57 @@
         }
     }
 }
+
+.test{
+    .form-ctn{
+        display: grid;
+        text-align: center;
+        padding-bottom: 100px;
+        .checklist-form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-family: "Arial", sans-serif;
+            text-align: center;
+          
+            h2 {
+              color: #333;
+              margin-bottom: 15px;
+            }
+          
+            table {
+              width: 100%;
+              border-collapse: collapse;
+            }
+          
+            th, td {
+              border: 1px solid #ddd;
+              padding: 10px;
+              text-align: start;
+            }
+          
+            th {
+              background: #f4f4f4;
+              text-align: center;
+            }
+          
+            button {
+              padding: 10px 15px;
+              font-size: 16px;
+              background: #007bff;
+              color: white;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: 0.3s;
+          
+              &:hover {
+                background: #0056b3;
+              }
+            }
+          }}
+}
+

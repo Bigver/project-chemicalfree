@@ -12,7 +12,7 @@ const Survey = sequelize.define("surveys", {
     allowNull: false,
   },
   category: {
-    type: DataTypes.ENUM("ด้านการสัมผัส", "ด้านการหายใจ", "ด้านการรับประทาน"),
+    type: DataTypes.JSON,
     allowNull: false,
   },
   answer : {

@@ -2,25 +2,26 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { requestMethod } from "../../requestMethod";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import AdminLayout from "./AdminLayout";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import PreTest from "../../components/admin/PreTest";
+import PostTest from "../../components/admin/PostTest";
 
 const EditPersonal = () => {
   const { register, handleSubmit, reset } = useForm();
   const params = useParams();
   const navigate = useNavigate();
-
+  const [data , setData] = useState([])
   useEffect(() => {
     const fecthPersonal = async () => {
       try {
-        const response = await axios.get(
-          `${requestMethod}/users/${params.id}`
-        );
+        const response = await axios.get(`${requestMethod}/users/${params.id}`);
         reset(response.data.personal);
+        setData(response.data.personal)
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
     fecthPersonal();
@@ -29,10 +30,10 @@ const EditPersonal = () => {
   const onSubmit = async (data) => {
     try {
       await axios.put(`${requestMethod}/users/${params.id}/personal`, data);
-      toast.success("บันทึกข้อมูลสำเร็จ")
-      navigate("/admin/user")
+      toast.success("บันทึกข้อมูลสำเร็จ");
+      navigate("/admin/user");
     } catch (error) {
-      toast.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล")
+      toast.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล");
     }
   };
   return (
@@ -43,9 +44,15 @@ const EditPersonal = () => {
             <h2>ข้อมูลส่วนตัว</h2>
             <div>
               <label>ชื่อ</label>
-              <input type="text" {...register("firstName", { required: true })} />
+              <input
+                type="text"
+                {...register("firstName", { required: true })}
+              />
               <label>นามสกุล</label>
-              <input type="text" {...register("lastName", { required: true })} />
+              <input
+                type="text"
+                {...register("lastName", { required: true })}
+              />
             </div>
 
             <label>อายุ:</label>
@@ -75,7 +82,10 @@ const EditPersonal = () => {
             />
 
             <label>ปัจจุบันเพาะปลูกอะไรเป็นหลัก:</label>
-            <input type="text" {...register("currentCrops", { required: true })} />
+            <input
+              type="text"
+              {...register("currentCrops", { required: true })}
+            />
 
             <label>ผลเลือดก่อนเข้าร่วมโครงการ:</label>
             <input type="text" {...register("bloodTestResults")} />
@@ -86,10 +96,15 @@ const EditPersonal = () => {
             <label>คะแนนหลังการอบรม</label>
             <input type="text" {...register("postScore")} />
 
-           
             <button type="submit">บันทึกข้อมูล</button>
           </form>
         </div>
+      </div>
+      <div className="test">
+        <PreTest preTest={data.preTest}/>
+      </div>
+      <div className="test">
+        <PostTest preTest={data.postTest}/>
       </div>
     </AdminLayout>
   );

@@ -31,6 +31,8 @@ export const updatePersonal = async (req, res) => {
       bloodTestResults,
       preScore,
       postScore,
+      preTest,
+      postTest
     } = req.body;
 
     // ค้นหาผู้ใช้ก่อน
@@ -56,6 +58,8 @@ export const updatePersonal = async (req, res) => {
         bloodTestResults,
         preScore,
         postScore,
+        preTest,
+        postTest
       });
     } else {
       // ถ้ามีแล้ว ให้ทำการอัปเดต
@@ -72,6 +76,8 @@ export const updatePersonal = async (req, res) => {
         bloodTestResults,
         preScore,
         postScore,
+        preTest,
+        postTest
       });
     }
 

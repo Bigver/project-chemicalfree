@@ -19,6 +19,8 @@ const Personal = sequelize.define("personals", {
   bloodTestResults: { type: DataTypes.STRING, allowNull: true }, // ผลเลือด
   preScore: { type: DataTypes.INTEGER, allowNull: true }, // คะแนนก่อน
   postScore: { type: DataTypes.INTEGER, allowNull: true }, // คะแนนหลัง
+  preTest: { type: DataTypes.JSON, allowNull: true }, // คะแนนก่อน
+  postTest: { type: DataTypes.JSON, allowNull: true }, // คะแนนก่อน
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,

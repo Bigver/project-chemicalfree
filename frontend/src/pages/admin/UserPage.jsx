@@ -73,7 +73,6 @@ const UserPage = () => {
             <tr>
               <th>ID</th>
               <th>ชื่อผู้ใช้</th>
-              <th>Email</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -83,7 +82,6 @@ const UserPage = () => {
                 <tr key={user.id}>
                   <td>{user.id}</td>
                   <td>{user.username}</td>
-                  <td>{user.email}</td>
                   <td>
                     <button
                       className="view-btn"

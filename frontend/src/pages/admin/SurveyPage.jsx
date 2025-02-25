@@ -34,7 +34,6 @@ const SurveyPage = () => {
 
   const fetchPersonalInfo = async (data) => {
     try {
-      console.log(data);
       setSelectedSurvey(data);
       setModalIsOpen(true);
     } catch (error) {
@@ -47,9 +46,9 @@ const SurveyPage = () => {
       try {
         await axios.delete(`${requestMethod}/survey/delete/${id}`);
         setSurveys(surveys.filter((survey) => survey.id !== id));
-        toast.success("delete user success")
+        toast.success("delete user success");
       } catch (error) {
-        toast.error("fail delete user")
+        toast.error("fail delete user");
       }
     }
   };
@@ -99,7 +98,14 @@ const SurveyPage = () => {
                   <td>{survey.id}</td>
                   <td>{survey.userId}</td>
                   <td>{formatDate(survey.createdAt)}</td>
-                  <td>{survey.category}</td>
+                  <td>
+                    {survey.category.map((item) => (
+                      <>
+                        {item}
+                        <br />
+                      </>
+                    ))}
+                  </td>
                   <td>
                     <button
                       className="view-btn"
@@ -109,7 +115,7 @@ const SurveyPage = () => {
                     </button>
                     <button
                       className="delete-btn"
-                      style={{marginLeft : '1rem'}}
+                      style={{ marginLeft: "1rem" }}
                       onClick={() => handleDelete(survey.id)}
                     >
                       🗑️ ลบ
@@ -154,7 +160,6 @@ const SurveyPage = () => {
         {selectedSurvey ? (
           <div>
             <div className="survey-container">
-              <h3 className="survey-title">➤ {selectedSurvey.category}</h3>
               <table className="survey-table">
                 <thead>
                   <tr>
@@ -170,8 +175,11 @@ const SurveyPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {selectedSurvey.category === "ด้านการสัมผัส" ? (
+                  {selectedSurvey.category[0] === "ด้านการสัมผัส" ||
+                  selectedSurvey.category[1] === "ด้านการสัมผัส" ||
+                  selectedSurvey.category[2] === "ด้านการสัมผัส" ? (
                     <>
+                      <tr><h3>ด้านการสัมผัส</h3></tr>
                       <tr>
                         <td>1. ท่านสวมใส่ถุงมือขณะทำกิจกรรมที่ใช้สารเคมี</td>
                         {selectedSurvey.answer.q1 === "ปฏิบัติ" ? (
@@ -251,8 +259,11 @@ const SurveyPage = () => {
                     ""
                   )}
 
-                  {selectedSurvey.category === "ด้านการหายใจ" ? (
+                  {selectedSurvey.category[0] === "ด้านการหายใจ" ||
+                  selectedSurvey.category[1] === "ด้านการหายใจ" ||
+                  selectedSurvey.category[2] === "ด้านการหายใจ" ? (
                     <>
+                      <tr><h3>ด้านการหายใจ</h3></tr>
                       <tr>
                         <td>
                           1. ท่านสวมหน้ากากอนามัยขณะทำกิจกรรมที่ใช้สารเคมี{" "}
@@ -295,8 +306,10 @@ const SurveyPage = () => {
                         )}
                       </tr>
                       <tr>
-                        <td>3. หากบริเวณที่ท่านอยู่มีการใช้สารเคมี ท่านจะสวมอุปกรณ์ป้องกันสารเคมี เช่น 
-                        Mask เป็นต้น </td>
+                        <td>
+                          3. หากบริเวณที่ท่านอยู่มีการใช้สารเคมี
+                          ท่านจะสวมอุปกรณ์ป้องกันสารเคมี เช่น Mask เป็นต้น{" "}
+                        </td>
                         {selectedSurvey.answer.q7 === "ปฏิบัติ" ? (
                           <>
                             <td>
@@ -314,7 +327,10 @@ const SurveyPage = () => {
                         )}
                       </tr>
                       <tr>
-                        <td>4. ท่านมีการสเปรย์กำจัดแมลง เช่น ไบกอน เชนไดร้ท์ เป็นต้น </td>
+                        <td>
+                          4. ท่านมีการสเปรย์กำจัดแมลง เช่น ไบกอน เชนไดร้ท์
+                          เป็นต้น{" "}
+                        </td>
                         {selectedSurvey.answer.q8 === "ปฏิบัติ" ? (
                           <>
                             <td>
@@ -335,12 +351,13 @@ const SurveyPage = () => {
                   ) : (
                     ""
                   )}
-                  {selectedSurvey.category === "ด้านการรับประทาน" ? (
+                  {selectedSurvey.category[0] === "ด้านการรับประทาน" ||
+                  selectedSurvey.category[1] === "ด้านการรับประทาน" ||
+                  selectedSurvey.category[2] === "ด้านการรับประทาน" ? (
                     <>
+                      <tr ><h3>ด้านการรับประทาน</h3></tr>
                       <tr>
-                        <td>
-                          1. ท่านรับประทานผักที่ท่านปลูกเอง 
-                        </td>
+                        <td>1. ท่านรับประทานผักที่ท่านปลูกเอง</td>
                         {selectedSurvey.answer.q9 === "ปฏิบัติ" ? (
                           <>
                             <td>
@@ -359,7 +376,8 @@ const SurveyPage = () => {
                       </tr>
                       <tr>
                         <td>
-                          2. หากท่านซื้อผักมารับประทาน ท่านล้างผักโดยใช้ผงฟู ก่อนปรุงอาหาร
+                          2. หากท่านซื้อผักมารับประทาน ท่านล้างผักโดยใช้ผงฟู
+                          ก่อนปรุงอาหาร
                         </td>
                         {selectedSurvey.answer.q10 === "ปฏิบัติ" ? (
                           <>
@@ -378,7 +396,10 @@ const SurveyPage = () => {
                         )}
                       </tr>
                       <tr>
-                        <td>3. หากท่านซื้อผักมารับประทาน ท่านล้างผักโดยใช้น้ำส้มสายชู ก่อนปรุงอาหาร </td>
+                        <td>
+                          3. หากท่านซื้อผักมารับประทาน
+                          ท่านล้างผักโดยใช้น้ำส้มสายชู ก่อนปรุงอาหาร{" "}
+                        </td>
                         {selectedSurvey.answer.q11 === "ปฏิบัติ" ? (
                           <>
                             <td>
@@ -396,7 +417,10 @@ const SurveyPage = () => {
                         )}
                       </tr>
                       <tr>
-                        <td>4. หากท่านซื้อผักมารับประทาน ท่านล้างผักโดยใช้เกลือ ก่อนปรุงอาหาร  </td>
+                        <td>
+                          4. หากท่านซื้อผักมารับประทาน ท่านล้างผักโดยใช้เกลือ
+                          ก่อนปรุงอาหาร{" "}
+                        </td>
                         {selectedSurvey.answer.q12 === "ปฏิบัติ" ? (
                           <>
                             <td>
@@ -414,7 +438,9 @@ const SurveyPage = () => {
                         )}
                       </tr>
                       <tr>
-                        <td>5. ท่านล้างผลไม้ทุกครั้งก่อนรับประทาน โดยใช้ผงฟู</td>
+                        <td>
+                          5. ท่านล้างผลไม้ทุกครั้งก่อนรับประทาน โดยใช้ผงฟู
+                        </td>
                         {selectedSurvey.answer.q13 === "ปฏิบัติ" ? (
                           <>
                             <td>
@@ -432,7 +458,9 @@ const SurveyPage = () => {
                         )}
                       </tr>
                       <tr>
-                        <td>6. ท่านล้างผลไม้ทุกครั้งก่อนรับประทาน โดยน้ำส้มสายชู</td>
+                        <td>
+                          6. ท่านล้างผลไม้ทุกครั้งก่อนรับประทาน โดยน้ำส้มสายชู
+                        </td>
                         {selectedSurvey.answer.q14 === "ปฏิบัติ" ? (
                           <>
                             <td>
@@ -450,7 +478,9 @@ const SurveyPage = () => {
                         )}
                       </tr>
                       <tr>
-                        <td>7. ท่านล้างผลไม้ทุกครั้งก่อนรับประทาน โดยน้ำเกลือ </td>
+                        <td>
+                          7. ท่านล้างผลไม้ทุกครั้งก่อนรับประทาน โดยน้ำเกลือ{" "}
+                        </td>
                         {selectedSurvey.answer.q15 === "ปฏิบัติ" ? (
                           <>
                             <td>

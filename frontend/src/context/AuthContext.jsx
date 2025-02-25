@@ -29,9 +29,9 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (username , email , password) => {
+  const register = async (username , password) => {
     try {
-      await axios.post(`${requestMethod}/auth/register`,{ email, password , username });
+      await axios.post(`${requestMethod}/auth/register`,{ password , username });
       return true;
     } catch (error) {
       console.error("Registration failed", error);

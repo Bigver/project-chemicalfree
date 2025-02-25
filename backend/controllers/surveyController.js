@@ -27,9 +27,6 @@ export const getSurveys = async (req, res) => {
     const offset = (page - 1) * limit; // คำนวณ offset
     const whereCondition = search
       ? {
-          category: {
-            [Op.like]: `%${search}%`, // ค้นหาหมวดหมู่ที่มีคำนี้
-          },
           userId: {
             [Op.like]: `%${search}%`, // ค้นหาหมวดหมู่ที่มีคำนี้
           },
