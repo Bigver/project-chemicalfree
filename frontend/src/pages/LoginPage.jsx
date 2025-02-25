@@ -5,7 +5,7 @@ import AuthContext from "../context/AuthContext.jsx";
 import { toast } from 'react-toastify';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login , token } = useContext(AuthContext);
@@ -17,7 +17,7 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const success = await login(email, password);
+    const success = await login(username, password);
     if (success) {
       toast.success("Login success")
       navigate("/welcome");
@@ -33,12 +33,12 @@ const LoginPage = () => {
         </div>
         <h2>เข้าสู่ระบบ</h2>
         <div className="input-group">
-          <label>Email</label>
+          <label>username</label>
           <input
-            type="email"
+            type="text"
             placeholder="กรอกอีเมล"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>

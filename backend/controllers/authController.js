@@ -9,9 +9,26 @@ export const register = async (req, res) => {
   try {
     const { email, password, username } = req.body;
 
-    if (!email || !password) {
+    if (!email || !password || !username) {
       return res.status(400).json({ error: "Missing required fields" });
     }
+
+      // 🔥 ตรวจสอบว่ามี email หรือ username ซ้ำอยู่ในระบบหรือไม่
+      const existingUser = await User.findOne({
+        where: { email },
+      });
+  
+      const existingUsername = await User.findOne({
+        where: { username },
+      });
+  
+      if (existingUser) {
+        return res.status(400).json({ error: "อีเมลนี้ถูกใช้ไปแล้ว กรุณาใช้อีเมลอื่น" });
+      }
+  
+      if (existingUsername) {
+        return res.status(400).json({ error: "ชื่อผู้ใช้นี้ถูกใช้ไปแล้ว กรุณาใช้ชื่ออื่น" });
+      }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({
@@ -35,13 +52,13 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ where: { email } });
+    const { username, password } = req.body;
+    const user = await User.findOne({ where: { username } });
     if (!user)
-      return res.status(401).json({ error: "Invalid email or password" });
+      return res.status(401).json({ error: "Invalid username or password" });
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword)
-      return res.status(401).json({ error: "Invalid email or password" });
+      return res.status(401).json({ error: "Invalid username or password" });
     
     const token = jwt.sign(
       { userId: user.id, role: user.role },

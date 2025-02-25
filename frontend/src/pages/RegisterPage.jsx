@@ -34,7 +34,7 @@ const RegisterPage = () => {
       toast.success("Register success");
       navigate("/login");
     } else {
-      toast.error("Registration failed!");
+      toast.error("เกิดข้อผิดพลาดกรุณาเปลี่ยน username หรือ email");
     }
   };
 
