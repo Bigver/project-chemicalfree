@@ -104,21 +104,27 @@ const Page2 = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                paddingBottom: "20px",
               }}
             >
               <h4 htmlFor="">คะแนนก่อนการอบรม {data.preScore}</h4>
               <h4 htmlFor="">คะแนนหลังการอบรม {data.postScore}</h4>
             </div>
+            <div style={{
+                paddingBottom: "20px",
+              }}>
+                <label>ผลเลือดหลังร่วมโครงการ:</label>
+                <input type="text" {...register("bloodPostTestResults")} />
+              </div>
+            
             <button type="submit">บันทึกข้อมูล</button>
           </form>
         </div>
       </div>
       <div className="content2">
-        <FormTest preTest={data.preTest} />
+        <FormTest preTest={data.preTest} preScore={data.preScore} />
       </div>
       <div className="content2">
-        <FormPostTest preTest={data.postTest} />
+        <FormPostTest preTest={data.postTest}  postScore={data.postScore}/>
       </div>
     </div>
   );

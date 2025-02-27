@@ -3,7 +3,7 @@ import sequelize from  "./database.js";
 // import Personal from "./models/personalModel.js";
 import Survey from "./models/surveyModel.js";
 
-sequelize.sync({ force: true })
+sequelize.sync({ alter: true })
   .then(() => {
     console.log('Database & tables created!');
   })

@@ -17,6 +17,7 @@ const Personal = sequelize.define("personals", {
   occupation: { type: DataTypes.STRING, allowNull: true }, // อาชีพหลัก
   currentCrops: { type: DataTypes.STRING, allowNull: true }, // ปัจจุบันเพาะปลูกอะไร
   bloodTestResults: { type: DataTypes.STRING, allowNull: true }, // ผลเลือด
+  bloodPostTestResults: { type: DataTypes.STRING, allowNull: true }, // ผลเลือด
   preScore: { type: DataTypes.INTEGER, allowNull: true }, // คะแนนก่อน
   postScore: { type: DataTypes.INTEGER, allowNull: true }, // คะแนนหลัง
   preTest: { type: DataTypes.JSON, allowNull: true }, // คะแนนก่อน

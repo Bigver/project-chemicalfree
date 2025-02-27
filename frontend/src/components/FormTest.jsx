@@ -6,7 +6,7 @@ import { requestMethod } from "../requestMethod";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 
-const FormTest = ({ preTest }) => {
+const FormTest = ({ preTest , preScore}) => {
   const { user } = useContext(AuthContext); // ดึง token จาก context
   const [responses, setResponses] = useState({
     q1: "",
@@ -97,6 +97,12 @@ const FormTest = ({ preTest }) => {
                 <th>ประจำ</th>
                 <th>บางครั้ง</th>
                 <th>ไม่เคยปฎิบัติ</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th>{count.ประจำ}</th>
+                <th>{count.บางครั้ง}</th>
+                <th>{count.ไม่ปฏิบัติ}</th>
               </tr>
             </thead>
             <thead>
@@ -263,6 +269,11 @@ const FormTest = ({ preTest }) => {
               <td>{count.บางครั้ง}</td>
               <td>{count.ไม่ปฏิบัติ}</td>
             </tr>
+            <tr>
+              <td style={{width : '400px'}}>คะแนนก่อนการอบรม</td>
+              <td colSpan={3} style={{textAlign : 'center'}}>{preScore}</td>
+            </tr>
+            
             
           </tbody>
         </table>

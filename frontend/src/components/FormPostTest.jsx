@@ -6,7 +6,7 @@ import { requestMethod } from "../requestMethod";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 
-const FormPostTest = ({ preTest }) => {
+const FormPostTest = ({ preTest, postScore }) => {
   const { user } = useContext(AuthContext); // ดึง token จาก context
   const [responses, setResponses] = useState({
     q1: "",
@@ -26,7 +26,7 @@ const FormPostTest = ({ preTest }) => {
     q15: "",
   });
 
-  const [count, setCount] = useState([])
+  const [count, setCount] = useState([]);
 
   useEffect(() => {
     if (preTest) {
@@ -52,12 +52,11 @@ const FormPostTest = ({ preTest }) => {
           acc[answer] = (acc[answer] || 0) + 1;
           return acc;
         },
-        { "ประจำ": 0, "บางครั้ง": 0, "ไม่ปฏิบัติ": 0 }
+        { ประจำ: 0, บางครั้ง: 0, ไม่ปฏิบัติ: 0 }
       );
-      setCount(counts)
+      setCount(counts);
     }
   }, [preTest]);
-
 
   const handleChange = (event) => {
     setResponses({
@@ -96,7 +95,13 @@ const FormPostTest = ({ preTest }) => {
                 <th></th>
                 <th>ประจำ</th>
                 <th>บางครั้ง</th>
-                <th>ไม่เคยปฎิบัติ</th>
+                <th>ไFม่เคยปฎิบัติ</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th>{count.ประจำ}</th>
+                <th>{count.บางครั้ง}</th>
+                <th>{count.ไม่ปฏิบัติ}</th>
               </tr>
             </thead>
             <thead>
@@ -258,12 +263,17 @@ const FormPostTest = ({ preTest }) => {
         <table>
           <tbody>
             <tr>
-              <td style={{width : '400px'}}>รวม</td>
+              <td style={{ width: "400px" }}>รวม</td>
               <td>{count.ประจำ}</td>
               <td>{count.บางครั้ง}</td>
               <td>{count.ไม่ปฏิบัติ}</td>
             </tr>
-            
+            <tr>
+              <td style={{ width: "400px" }}>คะแนนหลังการอบรม</td>
+              <td colSpan={3} style={{ textAlign: "center" }}>
+                {postScore}
+              </td>
+            </tr>
           </tbody>
         </table>
         <button type="submit">บันทึกข้อมูล</button>
