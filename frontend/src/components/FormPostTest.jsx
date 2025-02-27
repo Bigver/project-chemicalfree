@@ -95,7 +95,7 @@ const FormPostTest = ({ preTest, postScore }) => {
                 <th></th>
                 <th>ประจำ</th>
                 <th>บางครั้ง</th>
-                <th>ไFม่เคยปฎิบัติ</th>
+                <th>ไม่เคยปฎิบัติ</th>
               </tr>
               <tr>
                 <th></th>
