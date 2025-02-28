@@ -91,15 +91,12 @@ const EditPersonal = () => {
             <input type="text" {...register("bloodTestResults")} />
 
             <label>คะแนนความรู้ก่อนและหลังเข้าร่วมโครงการ</label>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <h4 htmlFor="">คะแนนก่อนการอบรม {data.preScore}</h4>
-              <h4 htmlFor="">คะแนนหลังการอบรม {data.postScore}</h4>
-            </div>
+            <label>คะแนนก่อนการอบรม</label>
+            <input type="text" {...register("preScore")} />
+
+            <label>คะแนนหลังการอบรม</label>
+            <input type="text" {...register("postScore")} />
+            
             <div style={{
                 paddingBottom: "20px",
               }}>
