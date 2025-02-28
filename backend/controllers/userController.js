@@ -33,7 +33,9 @@ export const updatePersonal = async (req, res) => {
       preScore,
       postScore,
       preTest,
-      postTest
+      postTest,
+      preScoreTest,
+      postScoreTest,
     } = req.body;
 
     // ค้นหาผู้ใช้ก่อน
@@ -61,7 +63,9 @@ export const updatePersonal = async (req, res) => {
         preScore,
         postScore,
         preTest,
-        postTest
+        postTest,
+        preScoreTest,
+        postScoreTest,
       });
     } else {
       // ถ้ามีแล้ว ให้ทำการอัปเดต
@@ -80,7 +84,9 @@ export const updatePersonal = async (req, res) => {
         preScore,
         postScore,
         preTest,
-        postTest
+        postTest,
+        preScoreTest,
+        postScoreTest,
       });
     }
 
@@ -93,7 +99,6 @@ export const updatePersonal = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
 
 export const getUsers = async (req, res) => {
   try {
@@ -138,8 +143,14 @@ export const getUsers = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
+    // ตรวจสอบว่าผู้ใช้มีอยู่จริงหรือไม่
     const user = await User.findByPk(id);
     if (!user) return res.status(404).json({ error: "User not found" });
+
+    // ลบข้อมูล Personal ที่เกี่ยวข้องกับ userId ก่อน
+    await Personal.destroy({ where: { userId: id } });
+
+    // ลบ User
     await user.destroy();
     res.json({ message: "User deleted successfully" });
   } catch (error) {

@@ -175,13 +175,22 @@ const UserPage = () => {
               <strong>ปัจจุบันเพาะปลูกอะไร:</strong> {selectedUser.currentCrops}
             </p>
             <p>
-              <strong>ผลเลือด:</strong> {selectedUser.bloodTestResults}
+              <strong>ผลเลือดก่อนเข้าร่วมโครงการ:</strong> {selectedUser.bloodTestResults}
             </p>
             <p>
-              <strong>คะแนนก่อน:</strong> {selectedUser.preScore}
+              <strong>ผลเลือดหลังเข้าร่วมโครงการ:</strong> {selectedUser.bloodPostTestResults}
             </p>
             <p>
-              <strong>คะแนนหลัง:</strong> {selectedUser.postScore}
+              <strong>คะแนนแบบทดสอบก่อนเข้าร่วมโครงการ:</strong> {selectedUser.preScore}
+            </p>
+            <p>
+              <strong>คะแนนแบบทดสอบหลังเข้าร่วมโครงการ:</strong> {selectedUser.postScore}
+            </p>
+            <p>
+              <strong>คะแนนพฤติกรรมก่อนเข้าร่วมโครงการ:</strong> {selectedUser.preScoreTest}
+            </p>
+            <p>
+              <strong>คะแนนพฤติกรรมหลังเข้าร่วมโครงการ:</strong> {selectedUser.postScoreTest}
             </p>
           </div>
         ) : (

@@ -6,7 +6,7 @@ import { requestMethod } from "../requestMethod";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 
-const FormTest = ({ preTest , preScore}) => {
+const FormTest = ({ preTest, preScore }) => {
   const { user } = useContext(AuthContext); // ดึง token จาก context
   const [responses, setResponses] = useState({
     q1: "",
@@ -26,7 +26,7 @@ const FormTest = ({ preTest , preScore}) => {
     q15: "",
   });
 
-  const [count, setCount] = useState([])
+  const [count, setCount] = useState([]);
 
   useEffect(() => {
     if (preTest) {
@@ -52,12 +52,11 @@ const FormTest = ({ preTest , preScore}) => {
           acc[answer] = (acc[answer] || 0) + 1;
           return acc;
         },
-        { "ประจำ": 0, "บางครั้ง": 0, "ไม่ปฏิบัติ": 0 }
+        { ประจำ: 0, บางครั้ง: 0, ไม่ปฏิบัติ: 0 }
       );
-      setCount(counts)
+      setCount(counts);
     }
   }, [preTest]);
-
 
   const handleChange = (event) => {
     setResponses({
@@ -68,11 +67,21 @@ const FormTest = ({ preTest , preScore}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const count = Object.values(responses).reduce(
+      (acc, answer) => {
+        acc[answer] = (acc[answer] || 0) + 1;
+        return acc;
+      },
+      { ประจำ: 0, บางครั้ง: 0, ไม่ปฏิบัติ: 0 }
+    );
+    const totalScore = count.ประจำ * 3 + count.บางครั้ง * 2 + count.ไม่ปฏิบัติ * 1
+    setCount(count)
     try {
       const response = await axios.put(
         `${requestMethod}/users/${user.userId}/personal`,
         {
           preTest: responses,
+          preScoreTest : totalScore 
         }
       );
       toast.success("บันทึกข้อมูลแล้ว");
@@ -100,9 +109,9 @@ const FormTest = ({ preTest , preScore}) => {
               </tr>
               <tr>
                 <th></th>
-                <th>{count.ประจำ}</th>
-                <th>{count.บางครั้ง}</th>
-                <th>{count.ไม่ปฏิบัติ}</th>
+                <th>3</th>
+                <th>2</th>
+                <th>1</th>
               </tr>
             </thead>
             <thead>
@@ -264,17 +273,19 @@ const FormTest = ({ preTest , preScore}) => {
         <table>
           <tbody>
             <tr>
-              <td style={{width : '400px'}}>รวม</td>
-              <td>{count.ประจำ}</td>
-              <td>{count.บางครั้ง}</td>
-              <td>{count.ไม่ปฏิบัติ}</td>
+              <td style={{ width: "400px" }}>รวม</td>
+              <td>{count.ประจำ ? count.ประจำ * 3 : 0}</td>
+              <td>{count.บางครั้ง ? count.บางครั้ง * 2 : 0}</td>
+              <td>{count.ไม่ปฏิบัติ ? count.ไม่ปฏิบัติ * 1 : 0}</td>
             </tr>
             <tr>
-              <td style={{width : '400px'}}>คะแนนก่อนการอบรม</td>
-              <td colSpan={3} style={{textAlign : 'center'}}>{preScore}</td>
+              <td style={{ width: "400px" }}>
+                คะแนนพฤติกรรมก่อนเข้าร่วมโครงการ
+              </td>
+              <td colSpan={3} style={{ textAlign: "center" }}>
+                {count.ประจำ || count.บางครั้ง || count.ไม่ปฏิบัติ  ? <>{count.ประจำ * 3 + count.บางครั้ง * 2 + count.ไม่ปฏิบัติ * 1}</>  : 0}
+              </td>
             </tr>
-            
-            
           </tbody>
         </table>
         <button type="submit">บันทึกข้อมูล</button>

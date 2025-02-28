@@ -36,7 +36,7 @@ const LoginPage = () => {
           <label>username</label>
           <input
             type="text"
-            placeholder="กรอกชื่ออผู้ใช้งาน"
+            placeholder="กรอกชื่อผู้ใช้งาน"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required

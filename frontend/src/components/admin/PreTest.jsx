@@ -66,11 +66,22 @@ const PreTest = ({ preTest }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const count = Object.values(responses).reduce(
+      (acc, answer) => {
+        acc[answer] = (acc[answer] || 0) + 1;
+        return acc;
+      },
+      { ประจำ: 0, บางครั้ง: 0, ไม่ปฏิบัติ: 0 }
+    );
+    const totalScore = count.ประจำ * 3 + count.บางครั้ง * 2 + count.ไม่ปฏิบัติ * 1;
+    setCount(count)
+
     try {
       const response = await axios.put(
         `${requestMethod}/users/${params.id}/personal`,
         {
           preTest: responses,
+          preScoreTest: totalScore,
         }
       );
       toast.success("บันทึกข้อมูลแล้ว");
@@ -254,15 +265,24 @@ const PreTest = ({ preTest }) => {
           </tbody>
         </table>
         <table>
-          <tbody>
+        <tbody>
             <tr>
               <td style={{ width: "400px" }}>รวม</td>
-              <td>{count.ประจำ}</td>
-              <td>{count.บางครั้ง}</td>
-              <td>{count.ไม่ปฏิบัติ}</td>
+              <td>{count.ประจำ ? count.ประจำ * 3 : 0}</td>
+              <td>{count.บางครั้ง ? count.บางครั้ง * 2 : 0}</td>
+              <td>{count.ไม่ปฏิบัติ ? count.ไม่ปฏิบัติ * 1 : 0}</td>
+            </tr>
+            <tr>
+              <td style={{ width: "400px" }}>
+                คะแนนพฤติกรรมก่อนเข้าร่วมโครงการ
+              </td>
+              <td colSpan={3} style={{ textAlign: "center" }}>
+                {count.ประจำ || count.บางครั้ง || count.ไม่ปฏิบัติ  ? <>{count.ประจำ * 3 + count.บางครั้ง * 2 + count.ไม่ปฏิบัติ * 1}</>  : 0}
+              </td>
             </tr>
           </tbody>
         </table>
+
         <button type="submit">บันทึกข้อมูล</button>
       </form>
     </div>

@@ -8,12 +8,12 @@ const Personal = sequelize.define("personals", {
     primaryKey: true,
   },
   firstName: { type: DataTypes.STRING, allowNull: true }, // ชื่อ
-  lastName: { type: DataTypes.STRING, allowNull: true },  // นามสกุล
-  age: { type: DataTypes.INTEGER, allowNull: true },      // อายุ
+  lastName: { type: DataTypes.STRING, allowNull: true }, // นามสกุล
+  age: { type: DataTypes.INTEGER, allowNull: true }, // อายุ
   gender: { type: DataTypes.ENUM("ชาย", "หญิง", "อื่นๆ"), allowNull: true }, // เพศ
   chronicDiseases: { type: DataTypes.STRING, allowNull: true }, // โรคประจำตัว
-  address: { type: DataTypes.TEXT, allowNull: true },     // ที่อยู่
-  phone: { type: DataTypes.STRING, allowNull: true },     // เบอร์โทร
+  address: { type: DataTypes.TEXT, allowNull: true }, // ที่อยู่
+  phone: { type: DataTypes.STRING, allowNull: true }, // เบอร์โทร
   occupation: { type: DataTypes.STRING, allowNull: true }, // อาชีพหลัก
   currentCrops: { type: DataTypes.STRING, allowNull: true }, // ปัจจุบันเพาะปลูกอะไร
   bloodTestResults: { type: DataTypes.STRING, allowNull: true }, // ผลเลือด
@@ -22,6 +22,8 @@ const Personal = sequelize.define("personals", {
   postScore: { type: DataTypes.INTEGER, allowNull: true }, // คะแนนหลัง
   preTest: { type: DataTypes.JSON, allowNull: true }, // คะแนนก่อน
   postTest: { type: DataTypes.JSON, allowNull: true }, // คะแนนก่อน
+  preScoreTest: { type: DataTypes.INTEGER, allowNull: true },
+  postScoreTest: { type: DataTypes.INTEGER, allowNull: true },
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
